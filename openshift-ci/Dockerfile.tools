@@ -13,3 +13,6 @@ RUN mkdir -p $GOPATH/src/github.com/operator-framework \
     && make install \
     && chmod -R 0777 $GOPATH \
     && rm -rf $GOPATH/.cache
+
+RUN wget https://github.com/openshift-online/ocm-cli/releases/download/$OCM_VERSION/ocm-linux-amd64 -O /usr/local/bin/ocm \
+    && chmod +x /usr/local/bin/ocm

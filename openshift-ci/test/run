@@ -20,4 +20,6 @@ INTEGREATLY_OPERATOR_IMAGE="registry.svc.ci.openshift.org/integr8ly/integreatly-
 E2E_CMD="operator-sdk --verbose test local ./openshift-ci/test/e2e --namespace=test --go-test-flags \"-timeout=60m\" --debug --image=${INTEGREATLY_OPERATOR_IMAGE}"
 docker run --rm -e KUBECONFIG=/kube.config -v "${HOME}/.kube/config":/kube.config:z -u $UID -v "${WORK_DIR}/../..:/integreatly-operator:z" --entrypoint=/bin/sh ${IMAGE_NAME} -c "cd /integreatly-operator && ${E2E_CMD}"
 
+docker run --rm -u $UID -v "${WORK_DIR}/../..:/operator:z" --entrypoint=/bin/sh ${IMAGE_NAME} -c "cd /operator && ocm version"
+
 echo "SUCCESS!"
